@@ -1,0 +1,53 @@
+// https://semver.org/
+def majorVersion = 0
+def minorVersion = 1
+def patchVersion = 0
+def buildNumber = System.getenv("BUILD_NUMBER") ?: "SNAPSHOT"
+
+group 'ai.eureka'
+version "${majorVersion}.${minorVersion}.${patchVersion}"
+
+buildscript {
+	ext {
+		springBootVersion = '2.4.5'
+	}
+	repositories {
+		mavenCentral()
+	}
+}
+
+repositories {
+	jcenter()
+	mavenCentral()
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'maven'
+
+sourceCompatibility = 1.8
+
+jar {
+	from {
+		(configurations.runtime).collect {
+			it.isDirectory() ? it : zipTree(it)
+		}
+	}
+	manifest {
+		attributes 'Main-Class': 'com.binus.learnprogramming.Helloworld'
+	}
+}
+
+dependencies {
+
+}
+
+task createPom  {
+	pom {
+		project {
+			groupId "com.binus"
+			artifactId "learnprogramming"
+			version version
+		}.writeTo("pom.xml")
+	}
+}
