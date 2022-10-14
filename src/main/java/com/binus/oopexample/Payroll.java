@@ -27,12 +27,11 @@ public class Payroll {
         increaseSalaryRate.put(BaseCommissionEmployee.class.getName(), 10.0);
 
         float bonus = 0.0F;
-        Double currentSalaryRate = 0.0;
         for (Employee employee: employeeList) {
 
             // calculate bonus
             float oldEarnings = employee.earnings();
-            currentSalaryRate = increaseSalaryRate.get(employee.getClass().getName());
+            Double currentSalaryRate = increaseSalaryRate.get(employee.getClass().getName());
             if (currentSalaryRate != 0.0) {
                 bonus = Employee.calculateBonus(oldEarnings, currentSalaryRate);
             }
