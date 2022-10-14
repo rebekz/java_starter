@@ -1,18 +1,16 @@
 package com.binus.oopexample;
 
-import java.io.PrintWriter;
-
 public class SalariedEmployee extends Employee {
 
     private float weeklySalary;
-    private float percentageAttendee;
+    private float attendeePercentage;
 
-    public SalariedEmployee(String firstName, String lastName, String socialSecurityNumber, float salary, float percentageAttendee) {
+    public SalariedEmployee(String firstName, String lastName, String socialSecurityNumber, float salary, float attendeePercentage) {
         setFirstName(firstName);
         setLastName(lastName);
         setSocialSecurityNumber(socialSecurityNumber);
         setWeeklySalary(salary);
-        setPercentageAttendee(percentageAttendee);
+        setAttendeePercentage(attendeePercentage);
     }
     public void setWeeklySalary(float salary) {
         if (salary < 0.0) {
@@ -26,17 +24,17 @@ public class SalariedEmployee extends Employee {
         return weeklySalary;
     }
 
-    public void setPercentageAttendee(float percentageOfficeEntry) {
-        this.percentageAttendee = percentageOfficeEntry;
+    public void setAttendeePercentage(float percentageOfficeEntry) {
+        this.attendeePercentage = percentageOfficeEntry;
     }
 
-    public float getPercentageAttendee() {
-        return percentageAttendee;
+    public float getAttendeePercentage() {
+        return attendeePercentage;
     }
 
     @Override
     float earnings() {
-        return getWeeklySalary() * (getPercentageAttendee() / 100);
+        return getWeeklySalary() * (getAttendeePercentage() / 100) + getBonus();
     }
 
     @Override
@@ -44,6 +42,7 @@ public class SalariedEmployee extends Employee {
         String name = getFirstName() + " " + getLastName();
         String str = "Salaried employee:\n" +
                 "Name: " + name + "\n" +
+                "Bonus: " + getBonus() + "\n" +
                 "salary: " + earnings();
         return str;
     }

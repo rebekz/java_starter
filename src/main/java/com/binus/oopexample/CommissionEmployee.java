@@ -31,7 +31,7 @@ public class CommissionEmployee extends Employee {
 
     @Override
     float earnings() {
-        return (float) (getRate() * getSales());
+        return (float) (getRate() * getSales()) + getBonus();
     }
 
     @Override
@@ -39,6 +39,7 @@ public class CommissionEmployee extends Employee {
         String name = getFirstName() + " " + getLastName();
         String str = "Commision employee:\n" +
                 "Name: " + name + "\n" +
+                "Bonus: " + getBonus() + "\n" +
                 "Salary: " + earnings();
         return str;
     }
